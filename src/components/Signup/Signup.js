@@ -24,6 +24,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    confirmPassword:true,
     photo: "",
     error: "",
     success: false,
@@ -108,12 +109,32 @@ const Signup = () => {
     let isFormValid = true; 
     if(e.target.name==='email'){
         isFormValid = /\S+@\S+\.\S+/.test(e.target.value);
-        console.log(e.target.value)
+        
      }
      if(e.target.name==='password'){
         isFormValid = /\d{1}/.test(e.target.value) && e.target.value.length > 8;
-        console.log(e.target.value)
+        const newUserInfo = {...user}
+        newUserInfo[e.target.name] = e.target.value;
+        setUser(newUserInfo);
+        // console.log(user.password);
      }
+     if(e.target.name==='confirmPassword'){
+         
+        if(e.target.value!==user.password){
+        const newUserInfo = {...user}
+        newUserInfo[e.target.name] = false; 
+        setUser(newUserInfo);  
+        isFormValid = false;
+         
+        }
+        if(e.target.value===user.password){
+                const newUserInfo = {...user}
+                newUserInfo[e.target.name] = true; 
+                setUser(newUserInfo);  
+                isFormValid = true;
+        }
+         
+}
      if(isFormValid){
         const newUserInfo = {...user}
         newUserInfo[e.target.name] = e.target.value; 
@@ -143,15 +164,8 @@ const Signup = () => {
   })
   .catch((error) => {
     // Handle Errors here.
-    let errorCode = error.code;
-    let errorMessage = error.message;
-    // The email of the user's account used.
-    let email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    let credential = error.credential;
-
-    // ...
-  });
+    console.log(error.message)
+      });
   }
    return (
     <div className="form-div">
@@ -184,15 +198,15 @@ const Signup = () => {
           className="form-control"
           required
         ></input>
-        {newUser && <><label for="confirm-password">Confirm password:</label>
+        {newUser && <><label htmlFor="confirm-password">Confirm password:</label>
         <input
           type="password"
-          name="confirm-password"
+          name="confirmPassword"
           onBlur={handleBlur}
           placeholder="confirm password"
           className="form-control"
           required
-        ></input></>}
+        ></input>{!user.confirmPassword && <span>Password not Match</span>}</>}
         <div className="button-center">
           <input type="submit"  value={newUser? "Create Account" : "Sign in"} className="btn btn-warning"></input>
           <br />
