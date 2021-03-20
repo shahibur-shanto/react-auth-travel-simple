@@ -1,6 +1,7 @@
 import React from 'react';
-import { Image, Nav, NavDropdown } from 'react-bootstrap';
+import { Image, Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar'
+import { Link } from 'react-router-dom';
 import logo from '../../images/cover.png'
 import './Header.css';
 
@@ -24,11 +25,11 @@ const Header = () => {
       </NavDropdown>
     </Nav> */}
     <Nav className="ml-auto">
-      <Nav.Link className="menu-item" href="#deets">Home</Nav.Link>
-      <Nav.Link  className="menu-item" href="#memes">Destination</Nav.Link>
-      <Nav.Link className="menu-item" href="#memes">Blog</Nav.Link>
-      <Nav.Link  className="menu-item" href="#memes">Contact</Nav.Link>
-      <Nav.Link className="menu-item" href="#memes"><button className="btn btn-primary">Login</button></Nav.Link>
+      <Link className="menu-item" to="/home">Home</Link>
+      <Link  className="menu-item" to="/">Destination</Link>
+      <Link className="menu-item" href="#memes">Blog</Link>
+      <Link  className="menu-item" href="#memes">Contact</Link>
+      <Link className="menu-item" to='/signup'><button className="btn btn-primary">Login</button></Link>
 
     </Nav>
   </Navbar.Collapse>

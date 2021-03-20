@@ -1,0 +1,13 @@
+.form-style{
+    background-color: lightblue;
+    width:100%;
+        
+}
+.row{
+    margin-left:20px;
+    margin-right:20px;
+    margin-top: 10px;
+}
+.map{
+    background-color: lightcoral;
+}

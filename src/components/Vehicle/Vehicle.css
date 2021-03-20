@@ -1,0 +1,11 @@
+.vehicle-image{
+    width:100%;
+    height:200px; 
+    margin-top:5px;  
+}
+.vehicle{
+    box-sizing: border-box;
+    background-color: lightblue;
+    border-radius: 5px;
+    margin: 5px;
+}

@@ -1,0 +1,19 @@
+.form-div{
+    width:30%;
+    background-color: white;
+    margin:10px auto; 
+    background-color: lightblue;
+}
+.form{
+    padding: 10px;
+    
+}
+
+.button-center{
+    text-align: center;
+}
+.button-center button{
+    margin-top:5px;
+    width:60%;
+    text-align: center;
+}
