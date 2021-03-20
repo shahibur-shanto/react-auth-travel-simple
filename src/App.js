@@ -9,11 +9,18 @@ import {
 } from "react-router-dom";
 import Signup from './components/Signup/Signup';
 import Destination from './components/Destination/Destination';
+import { createContext, useState } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+
+export const UserContext = createContext();
+
 
 function App() {
+  const [loggedInUser,setLoggedInUser] = useState({})
   return (
     <div>
-    
+    <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
+    <p>name: {loggedInUser.name}</p>
     <Router>
     <Switch>
     <Route exact path="/">
@@ -28,14 +35,14 @@ function App() {
       <Header/>
       <Signup/>
       </Route>
-      <Route path="/destination/:vehicleType">
-      <Header/>
-      <Destination/>
-      </Route>
+      <PrivateRoute path="/destination/:vehicleType">
+        
+        <Destination/>
+      </PrivateRoute>
       </Switch>
 
     </Router>
-            
+    </UserContext.Provider>
     </div>
   );
 }

@@ -1,17 +1,23 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import "./Signup.css";
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from '../../firebase.config';
+import {UserContext} from '../../App';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
 const Signup = () => {
-  let googleProvider = new firebase.auth.GoogleAuthProvider();
-  let fbProvider = new firebase.auth.FacebookAuthProvider();
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext)
+    const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
+
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const fbProvider = new firebase.auth.FacebookAuthProvider();
   const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
     isSignIn: false,
@@ -28,23 +34,14 @@ const Signup = () => {
       .auth()
       .signInWithPopup(googleProvider)
       .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
-        let credential = result.credential;
-
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        let token = credential.accessToken;
-        // The signed-in user info.
-        let user = result.user;
-        // ...
+        const  {displayName,email} = result.user;
+        const signInUser = {name:displayName,email}
+        setLoggedInUser(signInUser);
+        history.replace(from);
       })
       .catch((error) => {
         // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        // The email of the user's account used.
-        let email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        let credential = error.credential;
+        console.log(error.message);
         // ...
       });
   };
@@ -137,6 +134,10 @@ const Signup = () => {
 
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var accessToken = credential.accessToken;
+    const  {displayName,email} = user;
+        const signInUser = {name:displayName,email}
+        setLoggedInUser(signInUser);
+        history.replace(from);
 
     // ...
   })
