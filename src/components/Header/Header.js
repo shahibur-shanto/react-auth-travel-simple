@@ -26,7 +26,7 @@ const Header = () => {
     </Nav> */}
     <Nav className="ml-auto">
       <Link className="menu-item" to="/home">Home</Link>
-      <Link  className="menu-item" to="/">Destination</Link>
+      <Link  className="menu-item" to="/destination/:vehicleType">Destination</Link>
       <Link className="menu-item" href="#memes">Blog</Link>
       <Link  className="menu-item" href="#memes">Contact</Link>
       <Link className="menu-item" to='/signup'><button className="btn btn-primary">Login</button></Link>

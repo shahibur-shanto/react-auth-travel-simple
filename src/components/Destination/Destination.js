@@ -8,6 +8,7 @@ import { useParams } from 'react-router';
 
 
 
+
 const Destination = () => {
     const [vehicle,setVehicle] = useState('');
     const [show,setShow] = useState('none');
@@ -78,7 +79,8 @@ const Destination = () => {
                
           </div>
           <div className="col-md-9 map">
-
+                   <h1>This is map</h1>
+                  
           </div>  
         </div>
     );
