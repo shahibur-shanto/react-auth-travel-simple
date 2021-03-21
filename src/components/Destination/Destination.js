@@ -5,6 +5,10 @@ import Bike from '../../fakeData/Bike';
 import Bus from '../../fakeData/Bus';
 import Train from '../../fakeData/Train';
 import { useParams } from 'react-router';
+// import * as React from 'react';
+// import { useState } from 'react';
+import ReactMapGL from 'react-map-gl';
+
 
 
 
@@ -48,7 +52,31 @@ const Destination = () => {
         }
         
         e.preventDefault()
-    }    
+    }   
+    
+
+    function Map() {
+        const [viewport, setViewport] = useState({
+          width: 800,
+          height: 400,
+          latitude: 23.810331,
+          longitude: 90.412521,
+          zoom: 10
+        });
+      
+        return (
+          <ReactMapGL
+          mapboxApiAccessToken = {"pk.eyJ1Ijoic2hhaGlidXIiLCJhIjoiY2ttajlmM2k0MG93NzJvczExcGpsODlvciJ9.Qe7-q0gOZJ8jONCpbddJwQ"}
+            {...viewport}
+            
+            onViewportChange={nextViewport => {
+                
+                setViewport(nextViewport);
+                
+                }}
+          />
+        );
+      }
     
     
     return (
@@ -79,9 +107,10 @@ const Destination = () => {
                
           </div>
           <div className="col-md-9 map">
-                   <h1>This is map</h1>
+          <Map></Map>
                   
           </div>  
+          
         </div>
     );
 };

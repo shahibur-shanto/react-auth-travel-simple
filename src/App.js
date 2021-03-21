@@ -12,9 +12,6 @@ import Destination from './components/Destination/Destination';
 import { createContext, useState } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
-
-
-
 export const UserContext = createContext();
 
 
@@ -24,8 +21,7 @@ function App() {
     <div>
     
     <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
-    <p>name: {loggedInUser.name}</p>
-    <Router>
+        <Router>
     <Switch>
     <Route exact path="/">
     <Header/>
