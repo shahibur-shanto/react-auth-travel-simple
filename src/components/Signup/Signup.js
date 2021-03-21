@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import "./Signup.css";
 import firebase from "firebase/app";
 import "firebase/auth";
