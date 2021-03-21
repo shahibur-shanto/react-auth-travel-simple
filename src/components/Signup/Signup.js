@@ -58,7 +58,11 @@ const Signup = () => {
           newUserInfo.success= true;
             setUser(newUserInfo);
             updateUserName(user.name);
+            const  {displayName,email} = result.user;
+            const signInUser = {name:displayName,email}
+            setLoggedInUser(signInUser);
             history.replace(from);
+            
 
         // ...
       })
@@ -73,13 +77,16 @@ const Signup = () => {
         firebase
           .auth()
           .signInWithEmailAndPassword(user.email, user.password)
-          .then((res) => {
+          .then((result) => {
             const newUserInfo = { ...user };
             newUserInfo.error = "";
             newUserInfo.success = true;
             setUser(newUserInfo);
+            const  {displayName,email} = result.user;
+            const signInUser = {name:displayName,email}
+            setLoggedInUser(signInUser);
             history.replace(from);
-            console.log("sign in info", res.user);
+            console.log("sign in info", result.user);
             // ...
           })
           .catch((error) => {
