@@ -58,6 +58,7 @@ const Signup = () => {
           newUserInfo.success= true;
             setUser(newUserInfo);
             updateUserName(user.name);
+            history.replace(from);
 
         // ...
       })
@@ -77,6 +78,7 @@ const Signup = () => {
             newUserInfo.error = "";
             newUserInfo.success = true;
             setUser(newUserInfo);
+            history.replace(from);
             console.log("sign in info", res.user);
             // ...
           })
