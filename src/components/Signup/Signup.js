@@ -112,7 +112,8 @@ const Signup = () => {
         
      }
      if(e.target.name==='password'){
-        isFormValid = /\d{1}/.test(e.target.value) && e.target.value.length > 8;
+        isFormValid = /\d{1}/.test(e.target.value) && e.target.value.length > 7;
+        !isFormValid && window.alert('Password should be 8 digit or more with at least one number') 
         const newUserInfo = {...user}
         newUserInfo[e.target.name] = e.target.value;
         setUser(newUserInfo);
@@ -216,6 +217,10 @@ const Signup = () => {
       <p>{user.error}</p>
       {user.success && <p>User {newUser ?"created" : "Logged in"} successfully</p>}
       <div className="button-center">
+        <ul>
+          <li>Password should be 8 digit or more with at least one number</li>
+          
+        </ul>
         <h5>or</h5>
         <button className="btn btn-warning" onClick={googleSignIn}>
           continue with google
